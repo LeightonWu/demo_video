@@ -17,8 +17,7 @@ ASFR0$AgeGroup <- sub(" to ", "-", ASFR0$AgeGroup)
 ASFR0
 
 gg_ASFR_2023 <- ggplot(ASFR0, aes(x=AgeGroup, y=VALUE))+
-  geom_col(fill="tomato1")+
-  theme_minimal() +
+  geom_col(fill="seagreen4")+
   theme(plot.title = element_text(lineheight=.8, face="bold"),
         axis.text.x = element_text(angle=0, vjust=0.5),
         legend.position = "right") +
@@ -35,7 +34,10 @@ grow0 <- grow %>% filter(GEO=="Canada",
                               c("Immigrants", "Emigrants",
                                 "Births", "Deaths")) %>%
   select(REF_DATE, TYPE = Components.of.population.growth,
-                        VALUE)
+                        VALUE) %>%
+  mutate(Year = substr(as.character(REF_DATE),
+                       nchar(as.character(REF_DATE)) - 3,
+                       nchar(as.character(REF_DATE))))
 
 grow_in <- grow0 %>% filter(TYPE %in% c("Immigrants", "Births")) %>%
                         mutate(VALUE = ifelse(test = TYPE=="Immigrants",
@@ -48,27 +50,36 @@ grow_out <- grow0 %>% filter(TYPE %in% c("Deaths", "Emigrants")) %>%
                                               no = VALUE))
 
 
-gg_grow_in <- ggplot(grow_in, aes(x = REF_DATE, y = VALUE, fill = TYPE)) +
+gg_grow_in <- ggplot(grow_in, aes(x = Year, y = VALUE, fill = TYPE)) +
   geom_col()+
   scale_y_continuous(labels=function(x) abs(x))+
-  labs(title = "Counts of Births and Immigrants of Canada",
+  scale_x_discrete(
+    breaks = c(grow_in$Year[1],
+               grow_in$Year[seq(1, length(grow_in$Year), by = 20)],
+               grow_in$Year[length(grow_in$Year)])
+  ) +
+  labs(title = "Counts of Births and Immigrants, Canada, 1972-2024",
        y="Population Growths",
        x="Year") +
-  theme_minimal() +
   coord_flip()
 
-gg_grow_out <- ggplot(grow_out, aes(x = REF_DATE, y = VALUE, fill = TYPE)) +
+
+gg_grow_out <- ggplot(grow_out, aes(x = Year, y = VALUE, fill = TYPE)) +
   geom_col()+
   scale_y_continuous(labels=function(x) abs(x))+
-  labs(title = "Counts of Deaths and Emigrants of Canada",
+  scale_x_discrete(
+    breaks = c(grow_out$Year[1],
+               grow_out$Year[seq(1, length(grow_out$Year), by = 20)],
+               grow_out$Year[length(grow_out$Year)])
+  ) +
+  labs(title = "Counts of Deaths and Emigrants of Canada, 1972-2024",
        y="Population Growths",
        x="Year") +
-  theme_minimal() +
   coord_flip()
 
 
 #########################################immigration dep
-imm0 <- imm %>% filter(REF_DATE=="2022/2023",
+imm0 <- imm %>% filter(REF_DATE=="2023/2024",
                        !(Age.group %in% c("All ages", "-1 year"))) %>%
   select(Age.group, VALUE) %>%
   mutate(AgeCat = case_when(
@@ -98,7 +109,7 @@ gg_imm_dep_2023 <- ggplot(imm1,
                               aes(x = AgeCat, y = VALUE, fill=AgeCat))+
   geom_col()+
   xlab("Age Category") +
-  labs(title = "Dependency Ratio of Immigrants, Canada, 2023")
+  labs(title = "Dependency Ratios of Immigrants, Canada, 2023")
 
 gg_imm_agecat_2023 <- ggplot(imm0,
                       aes(x = AgeCat, y = VALUE, fill=AgeCat))+

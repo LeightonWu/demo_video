@@ -1,0 +1,50 @@
+---
+title: "Canada"
+author: '11484265'
+date: "`r Sys.Date()`"
+output: powerpoint_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+source('HMD.R')
+source('statsCan.R')
+```
+
+## Population Overview
+
+```{r pyr}
+# pop pyramid
+gg_pyramid_2023
+```
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## All in and out
+:::::: {.columns}
+::: {.column}
+```{r in}
+gg_grow_in
+```
+:::
+
+::: {.column}
+```{r out}
+gg_grow_out
+```
+:::
+::::::
+
+
+## Age-Specific Fertility Rates
+
+```{r ASFR2023}
+# age specific fertility rates
+gg_ASFR_2023
+```
+
+
+
