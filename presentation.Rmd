@@ -47,4 +47,76 @@ gg_ASFR_2023
 ```
 
 
+## Dependency Ratio
+```{r}
+gg_dep
+```
+
+## Dependency Ratio 2023
+:::::: {.columns}
+::: {.column}
+```{r}
+gg_dep_2023
+```
+:::
+
+::: {.column}
+```{r}
+gg_imm_dep_2023
+```
+:::
+::::::
+
+## Historical Age Categories 2023
+
+```{r}
+gg_agecat
+```
+
+## Historical Age Categories 2023
+:::::: {.columns}
+::: {.column}
+```{r}
+gg_agecat_2023
+```
+:::
+
+::: {.column}
+```{r}
+gg_imm_agecat_2023
+```
+:::
+::::::
+
+
+
+
+## ASMR2020
+```{r}
+ASMR2020
+```
+
+## other rates
+:::::: {.columns}
+::: {.column}
+```{r}
+dx2020
+```
+:::
+
+::: {.column}
+```{r}
+ex2020
+```
+:::
+::::::
+
+
+
+
+
+
+
+
+
 

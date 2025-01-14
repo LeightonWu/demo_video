@@ -178,14 +178,16 @@ lt2020 <- tibble(rbind(ltf2020_calc, ltm2020_calc))
 # probability of survival px
 # probability of dying qx (age specific mortality rate asmr)
 ASMR2020 <- lt2020 %>%
-  gather(Probability, Value, qx:px) %>%
-  ggplot(aes(x = Age, y = Value,
-             group = interaction(Gender, Probability),
-             color = Gender,
-             linetype  = Probability)) +
+  # gather(Probability, Value, qx:px) %>%
+  ggplot(aes(x = Age, y = qx,
+             group = Gender,
+             color = Gender))+
+             # linetype  = Probability)) +
   geom_line(linewidth = 2) +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))+
+  labs(title = "Age-Specific Mortality Rate")+
+  ylab("Probability")
 
 ASMR2020
 
@@ -194,7 +196,10 @@ dx2020 <- lt2020 %>%
   ggplot(aes(x = Age, y = dx, group = Gender, color = Gender)) +
   geom_line(linewidth = 2) +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))+
+  labs(title = "Death Rate Across Age Groups")+
+  ylab("Deaths in % of Initial Population")
+
 dx2020
 
 # life expectancy ex
@@ -202,5 +207,7 @@ ex2020 <- lt2020 %>%
   ggplot(aes(x = Age, y = ex, group = Gender, color=Gender)) +
   geom_line(linewidth = 2) +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))+
+  labs(title = "Life Expectancy Across Age Groups")+
+  ylab("Expected Remaining Lifetime (Years)")
 ex2020
