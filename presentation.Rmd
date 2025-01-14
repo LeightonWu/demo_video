@@ -113,7 +113,24 @@ ex2020
 
 
 
+## Citation
+HMD
+HMD. Human Mortality Database. Max Planck Institute for Demographic Research (Germany), University of California, Berkeley (USA), and French Institute for Demographic Studies (France). Available at www.mortality.org (data downloaded on [Jan 7 2025]). 
 
+
+STATS CAN
+
+fert
+Statistics Canada. (2024). Table 13-10-0418-01 Crude birth rate, age-specific fertility rates and total fertility rate (live births) [Data table].
+https://doi.org/10.25318/1310041801-eng
+
+
+growth
+Statistics Canada. (2024). Table 17-10-0008-01 Estimates of the components of demographic growth, annual [Data table].  https://doi.org/10.25318/1710000801-eng
+
+
+imm
+Statistics Canada. (2024). Table 17-10-0014-01 Estimates of the components of international migration, by age and gender, annual [Data table].  https://doi.org/10.25318/1710001401-eng
 
 
 

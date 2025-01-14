@@ -6,6 +6,7 @@ grow <- read.csv("data/growth.csv")
 imm <- read.csv("data/immigration_22to24.csv")
 
 
+
 ####################################ASFR
 ASFR <- fert %>% filter(REF_DATE==2023,
                 GEO=="Canada, place of residence of mother") %>%
